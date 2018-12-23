@@ -38,6 +38,8 @@ vpc
 ```
 1. **_Autoscaling_**
 This module include AutoscalingGroup, Launchconfigurating and AutoscalingPolicy.
+
+
 *Sample Template*
 ```
 ##This template creates the Autoscaling group and Launch configuration 
