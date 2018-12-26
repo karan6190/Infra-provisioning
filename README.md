@@ -1,15 +1,13 @@
-## InfraStructure Provisioning
+##InfraStructure Provisioning
 Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
-
-### Prerequisites
+###Prerequisites
 > AWS account (with programatic access)
-
 >Terraform in your system
 
-### Clone the repository
-git clone https://github.com/karan6190/Infra-provisioning.git
+###Clone the repository
+git clone 
 
-### Commands to compile and run the IAC
+###Commands to compile and run the IAC
 **terraform init**
 The terraform init command is used to initialize a working directory containing Terraform configuration files. This is the first command that should be run after writing a new Terraform configuration.
 This command performs several different initialization steps in order to prepare a working directory for use.
@@ -26,7 +24,7 @@ The terraform apply command is used to apply the changes required to reach the d
 
 ![terraform-apply](docs/terraform-apply.JPG)
 
-### Code Explanation
+###Code Explanation
 **modules**
 ```
 autoscaling
@@ -40,8 +38,6 @@ vpc
 ```
 1. **_Autoscaling_**
 This module include AutoscalingGroup, Launchconfigurating and AutoscalingPolicy.
-
-
 *Sample Template*
 ```
 ##This template creates the Autoscaling group and Launch configuration 
@@ -196,7 +192,7 @@ module "main-vpc" {
 }
 ```
 
-## Architecture
+##Architecture
 
 ![terraform-infra](docs/terraform-infra.JPG)
 
