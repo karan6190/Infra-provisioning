@@ -43,7 +43,8 @@ This module include AutoscalingGroup, Launchconfigurating and AutoscalingPolicy.
 
 
 *Sample Template*
-```
+
+```hcl
 ##This template creates the Autoscaling group and Launch configuration 
 ##with min size of 1 instances and max size of 2 Instance.
 ##
@@ -71,7 +72,8 @@ This module includes Ec2 instance (in a public subnets) which will acts as a Jum
 bastion-policy (Instance profile) will be attached to the Instance with Administrative access and the Security Group will allow the access over SHH
 
 *Sample Template*
-```
+
+```hcl
 module "bastion" {
   source           = "../modules/bastion"
   ENV              = "dev"
@@ -86,7 +88,8 @@ module "bastion" {
 This module include EC2 instance (can be in public or private subnets) with default EC2 Security group and default-ec2Policy with Administrative access
 
 *Sample Template*
-```
+
+```hcl
 ## Sample Template for standalone Ec2 instance
 ##
 
@@ -120,7 +123,8 @@ This module include InstanceProfile, Role, Policy creating and PolicyAttachment.
 This module include creation of classic loadblancer with default security group and includes listener for HTTP and HTTPS. module automatically set the HTTPS(443 port) for the described Instance Port.
 
 *Sample Template*
-```
+
+```hcl
 ##This template creates the classic loadblancer 
 ##with attached Ec2 instance
 ##Template by default creates the HTTPS listener and re-route the instance port to 443 port.  
@@ -153,7 +157,8 @@ This module includes creation of RDS instance with default-RDS security Group an
 RDS instance will be launched in private subnet with default backup rentension period of 7 days and storage of 20 GB
 
 *Sample Template*
-```
+
+```hcl
 module "rds" {
   source                  = "../modules/rds"
   ENV                     = "dev"  #default is dev
@@ -185,7 +190,8 @@ module "rds" {
 This module include setting up complete infra with VPC creation, 2 public and 2 private subnets and attached InternetGateway and 2 NatGateways.
 
 *Sample Template*
-```
+
+```hcl
 module "main-vpc" {
   source           = "../modules/vpc"
   ENV              = "${var.ENV}"	  #productEnv
@@ -207,7 +213,7 @@ Currently placing the *terraform.tfstate* on the s3 bucket (Centrally located) i
 
 **backend.tf**
 
-```
+```hcl
 terraform {
   backend "s3" {
     bucket = "${var.VPC_NAME}-${var.ENV}-terraform-state"
