@@ -55,12 +55,12 @@ module "asg" {
   AWS_REGION                          = "${var.AWS_REGION}"
   VPC_NAME                            = "fusion"
   subnets_id                          = "${module.main-vpc.public_subnets-2}"
-  instance_type                       = "t2.micro"									# default is t2.micro
-  key_name                            = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEApTZ5aSRGFe23ZBSV8SNDCky8JxEDnMLGmq5qi1FGcBe1W4k8In+jmeLVvhQ+RqPKRS97DNihoJ1bT99jdtFKGUBNTCGk+SF9+xCszmx2UBRUrPJyKJsZlnN1E3V9KwkWIlsvpziMdgCCrmzw/aBn28fxeK7lIV04XmVTl1wHVMBqGo4ur8ueYj7lHNJtAu0AY6BUadcHLl42bcw1UtlTEFSYFy9pUHDzjsSVx2OFA0nntECaqEUf8xbG1VmU3J4h3rI0Omufd9rcovu2fmL0yrk4ls8B7R+Ss9GVNR9hMe7Ec5/zTiQNdpqKmuLToqxV8jnd5zL26zv4MnfZZoD3nQ== rsa-key-karan"
+  instance_type                       = "t2.micro"							# default is t2.micro
+  key_name                            = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEApTZ5aSRGFe23ZBSV8SNDCky8JxEDnMLGmq5qi1FGcBe1W4k8In+jmeLVvhQ+RqPKRS97DNihoJ1bT99jdtFKGUBNTCGk+SF9+xCszmx2UBRUrPJyKJsZlnN1E3V9KwkWIlsvpziMdgCCrmzw/aBn28fxeK7lIV04XmVTl1wHVMBqGo4ur8ueYj7lHNJtAu0AY6BUadcHLl42bcw1UtlTEFSYFy9pUHDzjsSVx2OFA0aqEUf8xbG1VmU3J4h3rI0Omufd9rcovu2fmL0yrk4ls8B7R+Ss9GVNR9hMe7Ec5/zTiQNdpqKmuLToqxV8jnd5zL26zv4MnfZZoD3nQ== rsa-key-karan"
   security_groups                     = "${module.EC2.default_ec2_sg}"
   load_balancers                      = "${module.loadblancer.loadbalancer_name}"
   min_size                            = "1"											# default is 1
-  max_size                            = "2"                                         # default is 2
+  max_size                            = "2"                     # default is 2
   higherthreshold                     = "70"										# default is 70
   lowerthreshold                      = "30" 										# default is 30
 }
@@ -76,7 +76,7 @@ module "bastion" {
   source           = "../modules/bastion"
   ENV              = "dev"
   AWS_REGION       = "${var.AWS_REGION}"
-  VPC_NAME         = "fusion"									#productID
+  VPC_NAME         = "fusion"									          #productID
   vpc_id           = "${module.main-vpc.vpc_id}"				#productVPC
   public_subnets   = "${module.main-vpc.public_subnets-1}"
 }
@@ -97,15 +97,15 @@ module "EC2" {
   AWS_REGION                          = "${var.AWS_REGION}"
   VPC_NAME                            = "fusion"
   vpc_id                              = "${module.main-vpc.vpc_id}"
-  number_of_instances                 = "2" 										# default is 1
+  number_of_instances                 = "2" 										                    # default is 1
   subnet_id                           = "${module.main-vpc.private_subnets-2}"      # Launching ec2 in private subnets
   instance_type                       = "t2.micro"                                  # default t2.micro
   user_data                           = "${file("userdata.sh")}"
   instance_name                       = "Terraform"
-  instance_root_volume_size           = "8"   										# default is 8
+  instance_root_volume_size           = "8"   										                  # default is 8
   instance_root_volume_type           = "standard"                                  # default is standard
   instance_root_volume_provisioned_io = "0"
-  pubkey                              = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEApTZ5aSRGFe23ZBSV8SNDCky8JxEDnMLGmq5qi1FGcBe1W4k8In+jmeLVvhQ+RqPKRS97DNihoJ1bT99jdtFKGUBNTCGk+SF9+xCszmx2UBRUrPJyKJsZlnN1E3V9KwkWIlsvpziMdgCCrmzw/aBn28fxeK7lIV04XmVTl1wHVMBqGo4ur8ueYj7lHNJtAu0AY6BUadcHLl42bcw1UtlTEFSYFy9pUHDzjsSVx2OFA0nntECaqEUf8xbG1VmU3J4h3rI0Omufd9rcovu2fmL0yrk4ls8B7R+Ss9GVNR9hMe7Ec5/zTiQNdpqKmuLToqxV8jnd5zL26zv4MnfZZoD3nQ== rsa-key-karan"  
+  pubkey                              = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEApTZ5aSRGFe23ZBSV8SNDCky8JxEDnMLGmq5qi1FGcBe1W4k8In+jmeLVvhQ+RqPDNihoJ1bT99jdtFKGUBNTCGk+SF9+xCszmx2UBRUrPJyKJsZlnN1E3V9KwkWIlsvpziMdeYj7lHNJtAu0AY6BUadcHLl42bcw1UtlTEFSYFy9pUHDzjsSVx2OFA0nntECaqEUf8xbG1VmU3J4h3rrcovu2fmL0yrk4ls8B7R+Ss9GVNR9hMe7Ec5/zTiQNdpqKmuLToqxV8jnd5zL26zv4MnfZZoD3nQ== rsa-key-karan"  
 
 }
 ```
@@ -128,19 +128,19 @@ This module include creation of classic loadblancer with default security group 
 ###Clasic loadblancer
 module "loadblancer" {
   source                              = "../modules/loadblancer/classicloadblancer"
-  ENV                                 = "dev"										#default dev
-  AWS_REGION                          = "${var.AWS_REGION}"						    #default us-east-1
+  ENV                                 = "dev"										                   #default dev
+  AWS_REGION                          = "${var.AWS_REGION}"						             #default us-east-1
   VPC_NAME                            = "fusion"
   applicationName                     = "Terraform"
   vpc_id                              = "${module.main-vpc.vpc_id}"
   subnets                             = "${module.main-vpc.public_subnets-2}"       # Lb needs to be in public subnets
-  instance_port   		              = "80"									    #default 80
-  instance_protocol                   = "http"										#default http
-  health_check_url		              = "HTTP:80/"                                  #default "HTTP:80/"
+  instance_port   		                = "80"									                        #default 80
+  instance_protocol                   = "http"										                  #default http
+  health_check_url		                = "HTTP:80/"                                  #default "HTTP:80/"
   lb_port                             = "80"										#default 80
-  sslcert				              = "arn:aws:acm:us-west-2:501442322082:certificate/f2a59205-dcba-41b2-b499-338a97c67306"											#for accessing over https
+  sslcert				                      = "arn:aws:acm:us-west-2:ACCOUNT_NO:certificate/f2a59205-dcba-41b2-b499-338a97c67306"											                                                                            #for accessing over https
   instance_id                         = "${module.EC2.instance_id}"
-  #GW  					              = "${module.main-vpc.internetgateway}"        #Ensure the VPC has an Internet gateway
+  #GW  					                      = "${module.main-vpc.internetgateway}"        #Ensure the VPC has an Internet gateway
   
 }
 ```
@@ -156,7 +156,7 @@ RDS instance will be launched in private subnet with default backup rentension p
 ```
 module "rds" {
   source                  = "../modules/rds"
-  ENV                     = "dev"										#dev
+  ENV                     = "dev"										          #dev
   AWS_REGION              = "${var.AWS_REGION}"						    #us-east-1
   VPC_NAME                = "fusion"
   vpc_id                  = "${module.main-vpc.vpc_id}"
@@ -164,16 +164,16 @@ module "rds" {
   public_subnets-2        = "${module.main-vpc.public_subnets-2}"
   private_subnets-1       = "${module.main-vpc.private_subnets-1}"
   private_subnets-2       = "${module.main-vpc.private_subnets-2}"
-  multi_az                = "false"  									#default false
-  backup_retention_period = 7 									        #default 7
-  publicly_accessible     = false 								        #default false
-  minor_version_upgrade   = true 								        #default true
-  major_version_upgrade   = false								        #default false
-  storage                 = "20"								        #default 20
-  engine				  = "mysql"								        #default mysql
-  engine_version          = "5.7"                                       #default 5.7
-  instance_type           = "db.t2.small"                               #default db.t2.small
-  rdsname				  = "tesedb"                                    #database identifier
+  multi_az                = "false"  									       #default false
+  backup_retention_period = 7 									             #default 7
+  publicly_accessible     = false 								           #default false
+  minor_version_upgrade   = true 								             #default true
+  major_version_upgrade   = false								             #default false
+  storage                 = "20"								             #default 20
+  engine				          = "mysql"								           #default mysql
+  engine_version          = "5.7"                            #default 5.7
+  instance_type           = "db.t2.small"                    #default db.t2.small
+  rdsname				          = "tesedb"                         #database identifier
   dbname                  = "testTerraform"
   dbusername              = "terraform"
   dbpassword              = "${var.dbpassword}"
@@ -188,7 +188,7 @@ This module include setting up complete infra with VPC creation, 2 public and 2 
 ```
 module "main-vpc" {
   source           = "../modules/vpc"
-  ENV              = "${var.ENV}"										#productEnv
+  ENV              = "${var.ENV}"										    #productEnv
   AWS_REGION       = "${var.AWS_REGION}"
   VPC_NAME         = "${var.VPC_NAME}"									#productID
   az1              = "${var.AWS_REGION}a"
