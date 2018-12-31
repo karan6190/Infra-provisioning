@@ -134,13 +134,13 @@ module "loadblancer" {
   applicationName                     = "Terraform"
   vpc_id                              = "${module.main-vpc.vpc_id}"
   subnets                             = "${module.main-vpc.public_subnets-2}"  # Lb needs to be in public subnets
-  instance_port   		                = "80"  #default 80
+  instance_port                       = "80"  #default 80
   instance_protocol                   = "http"  #default http
-  health_check_url		                = "HTTP:80/"   #default "HTTP:80/"
-  lb_port                             = "80"										#default 80
+  health_check_url                    = "HTTP:80/"   #default "HTTP:80/"
+  lb_port                             = "80"         #default 80
   sslcert                             = "arn:aws:acm:us-west-2:ACCOUNT_NO:certificate/xxxxxxxxxxxxxxxxxxxxx"  #for accessing over https
   instance_id                         = "${module.EC2.instance_id}"
-  #GW  					                      = "${module.main-vpc.internetgateway}"  #Ensure the VPC has an Internet gateway
+  #GW                                 = "${module.main-vpc.internetgateway}"  #Ensure the VPC has an Internet gateway
   
 }
 ```
@@ -173,7 +173,7 @@ module "rds" {
   engine                  = "mysql"  #default mysql
   engine_version          = "5.7"  #default 5.7
   instance_type           = "db.t2.small"  #default db.t2.small
-  rdsname				          = "tesedb"  #database identifier
+  rdsname                 = "tesedb"  #database identifier
   dbname                  = "testTerraform"
   dbusername              = "terraform"
   dbpassword              = "${var.dbpassword}"
