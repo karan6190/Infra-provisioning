@@ -138,7 +138,7 @@ module "loadblancer" {
   instance_protocol                   = "http"  #default http
   health_check_url		                = "HTTP:80/"   #default "HTTP:80/"
   lb_port                             = "80"										#default 80
-  sslcert				                      = "arn:aws:acm:us-west-2:ACCOUNT_NO:certificate/xxxxxxxxxxxxxxxxxxxxx"											                                                                            #for accessing over https
+  sslcert                             = "arn:aws:acm:us-west-2:ACCOUNT_NO:certificate/xxxxxxxxxxxxxxxxxxxxx"  #for accessing over https
   instance_id                         = "${module.EC2.instance_id}"
   #GW  					                      = "${module.main-vpc.internetgateway}"  #Ensure the VPC has an Internet gateway
   
@@ -170,7 +170,7 @@ module "rds" {
   minor_version_upgrade   = true  #default true
   major_version_upgrade   = false  #default false
   storage                 = "20"  #default 20
-  engine				          = "mysql"  #default mysql
+  engine                  = "mysql"  #default mysql
   engine_version          = "5.7"  #default 5.7
   instance_type           = "db.t2.small"  #default db.t2.small
   rdsname				          = "tesedb"  #database identifier
