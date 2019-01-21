@@ -125,9 +125,9 @@ resource "aws_elastic_beanstalk_environment" "application" {
 
 ###HTTPS ListenerProtocol
   setting {
-    namespace = "aws:elb:listener"
+    namespace = "aws:elb:listener:443"
     name      = "ListenerProtocol"
-    value     = "443"
+    value     = "HTTPS"
   }
 
 ###HTTPS InstancePort
